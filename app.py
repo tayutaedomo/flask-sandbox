@@ -1,6 +1,9 @@
+import os
 from flask import Flask
 
 app = Flask(__name__)
+APP_SETTINGS = os.getenv('APP_SETTINGS', 'config.DevelopmentConfig')
+app.config.from_object(APP_SETTINGS)
 
 
 @app.route('/')
@@ -14,5 +17,6 @@ def hello_name(name):
 
 
 if __name__ == '__main__':
+    print('Config:', APP_SETTINGS)
     app.run()
 
