@@ -1,4 +1,5 @@
 import os
+import base64
 from flask import Flask, render_template, request
 from flask_httpauth import HTTPBasicAuth
 
@@ -42,8 +43,11 @@ def form_file_post():
     if request.files['image']:
         file = request.files['image']
         print(file)
+
         local['file'] = file
         local['file_body'] = request.files['image'].read()
+        local['file_base64'] = str(base64.b64encode(local['file_body']), 'utf-8')
+        print(local['file_base64'])
 
     return render_template('./form_file.html', local=local)
 
