@@ -1,5 +1,6 @@
 import os
-from flask import Flask
+import base64
+from flask import Flask, render_template, request
 from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__)
@@ -26,6 +27,29 @@ def hello():
 @auth.login_required
 def hello_name(name):
     return "Hello {}!".format(name)
+
+
+@app.route('/form_file', methods=['GET'])
+def form_file_get():
+    local = {}
+
+    return render_template('./form_file.html', local=local)
+
+
+@app.route('/form_file', methods=['POST'])
+def form_file_post():
+    local = {}
+
+    if request.files['image']:
+        file = request.files['image']
+        print(file)
+
+        local['file'] = file
+        local['file_body'] = request.files['image'].read()
+        local['file_base64'] = str(base64.b64encode(local['file_body']), 'utf-8')
+        print(local['file_base64'])
+
+    return render_template('./form_file.html', local=local)
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
+    MAX_CONTENT_LENGTH = 5 * 1024 * 1024    # 5MB
 
 
 class ProductionConfig(Config):
