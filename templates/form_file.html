@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<form action="/form_file" method="post" enctype="multipart/form-data">
+
+  <div class="row">
+    <input class="form-control form-control-md"
+           type="file" name="image" accept="image/png,image/jpeg,image/jpg"
+           placeholder="Image File">
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 offset-sm">
+      <button type="submit">Submit</button>
+    </div>
+  </div>
+
+  {% if local.file %}
+  <h3>Uploaded File</h3>
+
+  <div class="row">
+    <div class="col-sm-10">
+      <label>{{ local.file.filename }}</label>
+      <label>{{ local.file.content_length }}</label>
+      <label>{{ local.file.mimetype }}</label>
+    </div>
+    <div class="col-sm-10">
+      <pre>
+        {{ local.file_body }}
+      </pre>
+    </div>
+
+  </div>
+  {% endif %}
+
+</form>
+
+{% endblock %}
+
