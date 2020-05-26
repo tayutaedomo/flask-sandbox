@@ -19,6 +19,7 @@ $ cd flask-sandbox
 $ python app.py
 $ open "http://localhost:5000/"
 ```
+Basic Auth: sandbox / flask
 
 ## Config ENV
 You should set the appropriate ENV.
