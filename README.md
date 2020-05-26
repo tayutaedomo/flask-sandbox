@@ -20,3 +20,13 @@ $ python app.py
 $ open "http://localhost:5000/"
 ```
 
+## Config ENV
+You should set the appropriate ENV.
+```
+$ export APP_SETTINGS="config.DevelopmentConfig"
+# or
+$ export APP_SETTINGS=config.StagingConfig
+# or
+$ export APP_SETTINGS=config.ProductionConfig
+```
+
