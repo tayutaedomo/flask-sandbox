@@ -17,7 +17,7 @@ $ pip install -r requirements.txt
 ```
 $ cd flask-sandbox
 $ python app.py
-$ open "http://localhost:5000/"
+$ open "http://127.0.0.1:5000/"
 ```
 Basic Auth: sandbox / flask
 
