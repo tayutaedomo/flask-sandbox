@@ -3,6 +3,7 @@
 
 
 class Config(object):
+    # ENV = 'production'
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
@@ -15,15 +16,18 @@ class ProductionConfig(Config):
 
 
 class StagingConfig(Config):
+    ENV = 'staging'
     DEVELOPMENT = True
     DEBUG = True
 
 
 class DevelopmentConfig(Config):
+    ENV = 'development'
     DEVELOPMENT = True
     DEBUG = True
 
 
 class TestingConfig(Config):
+    ENV = 'testing'
     TESTING = True
 
