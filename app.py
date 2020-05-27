@@ -3,6 +3,26 @@ import base64
 from flask import Flask, render_template, request
 from flask_httpauth import HTTPBasicAuth
 
+from logging.config import dictConfig
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        # 'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+        'format': '%(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://flask.logging.wsgi_errors_stream',
+        'formatter': 'default'
+    }},
+    'root': {
+        # 'level': 'INFO',
+        'level': 'DEBUG',
+        'handlers': ['wsgi']
+    }
+})
+
 app = Flask(__name__)
 APP_SETTINGS = os.getenv('APP_SETTINGS', 'config.DevelopmentConfig')
 app.config.from_object(APP_SETTINGS)
@@ -20,6 +40,7 @@ def verify_password(username, password):
 @app.route('/')
 @auth.login_required
 def hello():
+    app.logger.info('hello')
     return "Hello World!"
 
 
